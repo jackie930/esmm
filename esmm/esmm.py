@@ -154,17 +154,21 @@ def create_feature_columns():
   click = fc.numeric_column("click", default_value=0.0)
   pay = fc.numeric_column("pay", default_value=0.0)
   global my_feature_columns
+  global my_label_feature_columns
   my_feature_columns = [matchScore, matchType, postition, triggerNum, triggerRank, sceneType, hour, phoneBrand, phoneResolution,
-             phoneOs, tab, popScore, sellerPrefer, brandPrefer, cate2Prefer, catePrefer, click, pay]
+             phoneOs, tab, popScore, sellerPrefer, brandPrefer, cate2Prefer, catePrefer]
   my_feature_columns += pid_embed
   my_feature_columns += sid_embed
   my_feature_columns += bid_embed
   my_feature_columns += cid_embed
   my_feature_columns += c1id_embed
+  my_label_feature_columns = my_feature_columns
+  my_label_feature_columns.append(click)
+  my_label_feature_columns.append(pay)
 #   my_feature_columns += click
 #   my_feature_columns += pay
   print("feature columns:", my_feature_columns)
-  return my_feature_columns
+  return my_feature_columns, my_label_feature_columns
 
 
 def parse_exmp(serial_exmp):
@@ -172,7 +176,7 @@ def parse_exmp(serial_exmp):
 #   pay = fc.numeric_column("pay", default_value=0, dtype=tf.int64)
 #   fea_columns = [click, pay]
 #   fea_columns += my_feature_columns
-  fea_columns = my_feature_columns
+  fea_columns = my_label_feature_columns
   feature_spec = tf.feature_column.make_parse_example_spec(fea_columns)
   #把数据映射过来(把真实数据变成上述定义的feature_column的形式)
   feats = tf.parse_single_example(serial_exmp, features=feature_spec)

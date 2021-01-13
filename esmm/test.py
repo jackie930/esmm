@@ -21,7 +21,8 @@ data_dict={'behaviorBids':[0,1,2,3,4,5,6],'behaviorC1ids':[1,2,3,4,5,6,7],'behav
            'phoneBrand':[b'apple',b'sum',b'huawei',b'xiaomi',b'apple',b'xiaomi',b'huawei'],
            'phoneResolution':[b'a',b'b',b'c',b'd',b'e',b'f',b'g'],
            'phoneOs':[b"android", b"ios",b"android", b"ios",b"android", b"ios",b'ko'],
-           'tab':[b"ALL", b"TongZhuang", b"XieBao", b"MuYing", b"NvZhuang", b"MeiZhuang", b"JuJia"]
+           'tab':[b"ALL", b"TongZhuang", b"XieBao", b"MuYing", b"NvZhuang", b"MeiZhuang", b"JuJia"],
+           'click':[0,0,0,0,0,0,0],'pay':[0,0,0,0,0,0,0]
            }
 lg=len(data_dict.keys())
 data_df=pd.DataFrame(data_dict)
@@ -57,6 +58,9 @@ for i in range(len(data_df)):
     features[columns_nm_list[23]] = tf.train.Feature(bytes_list=tf.train.BytesList(value=[data_df[columns_nm_list[23]][i]]))
     features[columns_nm_list[24]] = tf.train.Feature(bytes_list=tf.train.BytesList(value=[data_df[columns_nm_list[24]][i]]))
     features[columns_nm_list[25]] = tf.train.Feature(bytes_list=tf.train.BytesList(value=[data_df[columns_nm_list[25]][i]]))
+    # add label
+    features[columns_nm_list[26]] = tf.train.Feature(bytes_list=tf.train.Int64List(value=[data_df[columns_nm_list[26]][i]]))
+    features[columns_nm_list[27]] = tf.train.Feature(bytes_list=tf.train.Int64List(value=[data_df[columns_nm_list[27]][i]]))
 
     # # 写入向量，类型float，本身就是list，所以"value=vectors[i]"没有中括号
     # features['vector'] = tf.train.Feature(float_list=tf.train.FloatList(value=vectors[i]))

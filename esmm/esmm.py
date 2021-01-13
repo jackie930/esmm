@@ -150,6 +150,9 @@ def create_feature_columns():
   cid_embed = fc.shared_embedding_columns([cids_weighted, cid], 32, combiner='sum', shared_embedding_collection_name="cid")
   c1id_embed = fc.shared_embedding_columns([c1ids_weighted, c1id], 10, combiner='sum', shared_embedding_collection_name="c1id")
   sid_embed = fc.shared_embedding_columns([sids_weighted, sid], 32, combiner='sum', shared_embedding_collection_name="sid")
+  # label feature
+  click = fc.numeric_column("click", default_value=0.0)
+  pay = fc.numeric_column("pay", default_value=0.0)
   global my_feature_columns
   my_feature_columns = [matchScore, matchType, postition, triggerNum, triggerRank, sceneType, hour, phoneBrand, phoneResolution,
              phoneOs, tab, popScore, sellerPrefer, brandPrefer, cate2Prefer, catePrefer]
@@ -163,10 +166,11 @@ def create_feature_columns():
 
 
 def parse_exmp(serial_exmp):
-  click = fc.numeric_column("click", default_value=0, dtype=tf.int64)
-  pay = fc.numeric_column("pay", default_value=0, dtype=tf.int64)
-  fea_columns = [click, pay]
-  fea_columns += my_feature_columns
+#   click = fc.numeric_column("click", default_value=0, dtype=tf.int64)
+#   pay = fc.numeric_column("pay", default_value=0, dtype=tf.int64)
+#   fea_columns = [click, pay]
+#   fea_columns += my_feature_columns
+  fea_columns = my_feature_columns
   feature_spec = tf.feature_column.make_parse_example_spec(fea_columns)
   #把数据映射过来(把真实数据变成上述定义的feature_column的形式)
   feats = tf.parse_single_example(serial_exmp, features=feature_spec)

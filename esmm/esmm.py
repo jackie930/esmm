@@ -188,7 +188,8 @@ def parse_exmp(serial_exmp):
   feats = tf.parse_single_example(serial_exmp, features=feature_spec)
   click = feats.pop('click')
   pay = feats.pop('pay')
-  return feats, {'ctr': tf.to_float(click), 'cvr': tf.to_float(pay)}
+  return feats, {'ctr': click, 'cvr': pay}
+#   return feats, {'ctr': tf.to_float(click), 'cvr': tf.to_float(pay)}
 
 
 def train_input_fn(filenames, batch_size, shuffle_buffer_size):

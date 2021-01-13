@@ -155,14 +155,14 @@ def create_feature_columns():
   pay = fc.numeric_column("pay", default_value=0.0)
   global my_feature_columns
   my_feature_columns = [matchScore, matchType, postition, triggerNum, triggerRank, sceneType, hour, phoneBrand, phoneResolution,
-             phoneOs, tab, popScore, sellerPrefer, brandPrefer, cate2Prefer, catePrefer]
+             phoneOs, tab, popScore, sellerPrefer, brandPrefer, cate2Prefer, catePrefer, click, pay]
   my_feature_columns += pid_embed
   my_feature_columns += sid_embed
   my_feature_columns += bid_embed
   my_feature_columns += cid_embed
   my_feature_columns += c1id_embed
-  my_feature_columns += click
-  my_feature_columns += pay
+#   my_feature_columns += click
+#   my_feature_columns += pay
   print("feature columns:", my_feature_columns)
   return my_feature_columns
 

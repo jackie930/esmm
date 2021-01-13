@@ -59,8 +59,8 @@ for i in range(len(data_df)):
     features[columns_nm_list[24]] = tf.train.Feature(bytes_list=tf.train.BytesList(value=[data_df[columns_nm_list[24]][i]]))
     features[columns_nm_list[25]] = tf.train.Feature(bytes_list=tf.train.BytesList(value=[data_df[columns_nm_list[25]][i]]))
     # add label
-    features[columns_nm_list[26]] = tf.train.Feature(bytes_list=tf.train.Int64List(value=[data_df[columns_nm_list[26]][i]]))
-    features[columns_nm_list[27]] = tf.train.Feature(bytes_list=tf.train.Int64List(value=[data_df[columns_nm_list[27]][i]]))
+    features[columns_nm_list[26]] = tf.train.Feature(int64_list=tf.train.Int64List(value=[data_df[columns_nm_list[26]][i]]))
+    features[columns_nm_list[27]] = tf.train.Feature(int64_list=tf.train.Int64List(value=[data_df[columns_nm_list[27]][i]]))
 
     # # 写入向量，类型float，本身就是list，所以"value=vectors[i]"没有中括号
     # features['vector'] = tf.train.Feature(float_list=tf.train.FloatList(value=vectors[i]))

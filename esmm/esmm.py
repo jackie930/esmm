@@ -162,12 +162,18 @@ def create_feature_columns():
   my_feature_columns += bid_embed
   my_feature_columns += cid_embed
   my_feature_columns += c1id_embed
-  my_label_feature_columns = my_feature_columns
-  my_label_feature_columns.append(click)
-  my_label_feature_columns.append(pay)
+  my_label_feature_columns = [matchScore, matchType, postition, triggerNum, triggerRank, sceneType, hour, phoneBrand, phoneResolution,
+             phoneOs, tab, popScore, sellerPrefer, brandPrefer, cate2Prefer, catePrefer, click, pay]
+  my_label_feature_columns += pid_embed
+  my_label_feature_columns += sid_embed
+  my_label_feature_columns += bid_embed
+  my_label_feature_columns += cid_embed
+  my_label_feature_columns += c1id_embed
 #   my_feature_columns += click
 #   my_feature_columns += pay
+  print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   print("feature columns:", my_feature_columns)
+  print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   return my_feature_columns, my_label_feature_columns
 
 

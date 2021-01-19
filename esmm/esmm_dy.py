@@ -320,7 +320,7 @@ def my_model(features, labels, mode, params):  # 特标模参
     assert mode == tf.estimator.ModeKeys.TRAIN
     # add debug hook for train
     train_logging_hook = tf.estimator.LoggingTensorHook(
-        {'ctr_labels': labels['ctr'], 'ctr_prediction': ctr_prediction, 'cvr_label': labels['cvr'], 'cvr_prediction': cvr_prediction, 'loss': loss}, every_n_iter=1)
+        {'ctr_labels': labels['ctr'], 'ctr_predictions': ctr_predictions, 'cvr_labels': labels['cvr'], 'cvr_predictions': cvr_predictions, 'loss': loss}, every_n_iter=1)
 
     optimizer = tf.train.AdagradOptimizer(learning_rate=params['learning_rate'])
     train_op = optimizer.minimize(loss, global_step=tf.train.get_global_step())

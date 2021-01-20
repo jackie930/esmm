@@ -324,7 +324,8 @@ def my_model(features, labels, mode, params):  # 特标模参
 
     optimizer = tf.train.AdagradOptimizer(learning_rate=params['learning_rate'])
     train_op = optimizer.minimize(loss, global_step=tf.train.get_global_step())
-    return tf.estimator.EstimatorSpec(mode, loss=loss, train_op=train_op, training_hooks=[train_logging_hook])
+    # return tf.estimator.EstimatorSpec(mode, loss=loss, train_op=train_op, training_hooks=[train_logging_hook])
+    return tf.estimator.EstimatorSpec(mode, loss=loss, train_op=train_op)
 
 
 def main(unused_argv):

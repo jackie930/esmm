@@ -236,10 +236,10 @@ def parse_exmp(serial_exmp):
 
 
 def train_input_fn(filenames, batch_size, shuffle_buffer_size):
-    #dataset = tf.data.TFRecordDataset(filenames)
-    files = tf.data.Dataset.list_files(filenames)
-    dataset = files.apply(tf.contrib.data.parallel_interleave(
-        tf.data.TFRecordDataset, cycle_length=FLAGS.num_parallel_readers))
+    dataset = tf.data.TFRecordDataset(filenames)
+    # files = tf.data.Dataset.list_files(filenames)
+    # dataset = files.apply(tf.contrib.data.parallel_interleave(
+    #     tf.data.TFRecordDataset, cycle_length=FLAGS.num_parallel_readers))
     # Shuffle, repeat, and batch the examples.
     if shuffle_buffer_size > 0:
         dataset = dataset.shuffle(shuffle_buffer_size)

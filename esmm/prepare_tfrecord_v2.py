@@ -106,17 +106,14 @@ def _write_tfrecords(tfrecords_writer):
             tfrecords_writer.write(tf_serialized)
 
 
-class CrnnDataProducer(object):
+class ESMMDataProducer(object):
 
-    def __init__(self, dataset_dir, char_dict_path=None, anno_file_path=None,
-                 writer_process_nums=4, dataset_flag='train'):
+    def __init__(self, dataset_dir, writer_process_nums=4, dataset_flag='train'):
         if not ops.exists(dataset_dir):
             raise ValueError('Dataset dir {:s} not exist'.format(dataset_dir))
 
         # Check image source data
         self._dataset_dir = dataset_dir
-        self._annotation_file_path = anno_file_path
-        self._char_dict_path = char_dict_path
         self._writer_process_nums = writer_process_nums
         self._dataset_flag = dataset_flag
 
@@ -133,7 +130,6 @@ class CrnnDataProducer(object):
         for i in range(self._writer_process_nums):
             tfrecords_save_name = '{:s}_{:d}.tfrecords'.format(self._dataset_flag, i + 1)
             tfrecords_save_path = ops.join(save_dir, tfrecords_save_name)
-
             tfrecords_io_writer = tf.python_io.TFRecordWriter(path=tfrecords_save_path)
             process = Process(target=_write_tfrecords, name='Subprocess_{:d}'.format(i + 1),
                 args=(tfrecords_io_writer,))
@@ -153,7 +149,7 @@ def write_tfrecords(dataset_dir, save_dir, dataset_flag, writer_process_nums):
     os.makedirs(save_dir, exist_ok=True)
     # test data producer
     _init_data_queue(dataset_dir=dataset_dir, writer_process_nums=writer_process_nums, dataset_flag=dataset_flag)
-    producer = CrnnDataProducer(dataset_dir=dataset_dir,  writer_process_nums=writer_process_nums, dataset_flag=dataset_flag)
+    producer = ESMMDataProducer(dataset_dir=dataset_dir,  writer_process_nums=writer_process_nums, dataset_flag=dataset_flag)
     producer.generate_tfrecords(save_dir=save_dir)
 
 if __name__ == '__main__':

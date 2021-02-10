@@ -119,6 +119,44 @@ def create_feature_columns():
     # user feature
     uid = fc.indicator_column(
         fc.categorical_column_with_hash_bucket("uid", 1000))
+    own_room = fc.indicator_column(
+        fc.categorical_column_with_hash_bucket("own_room", 1000))
+    email_status = fc.indicator_column(
+        fc.categorical_column_with_hash_bucket("email_status", 1000))
+    phone_status = fc.indicator_column(
+        fc.categorical_column_with_hash_bucket("phone_status", 1000))
+    sex = fc.indicator_column(
+        fc.categorical_column_with_hash_bucket("sex", 1000))
+    city = fc.indicator_column(
+        fc.categorical_column_with_hash_bucket("city", 1000))
+    province = fc.indicator_column(
+        fc.categorical_column_with_hash_bucket("province", 1000))
+    brand = fc.indicator_column(
+        fc.categorical_column_with_hash_bucket("brand", 1000))
+    model = fc.indicator_column(
+        fc.categorical_column_with_hash_bucket("model", 1000))
+    active = fc.indicator_column(
+        fc.numeric_column("active", 0.0))
+    level = fc.indicator_column(
+        fc.numeric_column("level", 0.0))
+    days = fc.indicator_column(
+        fc.numeric_column("days", 0.0))
+    msg_cnt = fc.indicator_column(
+        fc.numeric_column("msg_cnt", 0.0))
+    effective_watch_days = fc.indicator_column(
+        fc.numeric_column("effective_watch_days", 0.0))
+    watch_time = fc.indicator_column(
+        fc.numeric_column("watch_time", 0.0))
+    yuanwan_tag = fc.indicator_column(
+        fc.categorical_column_with_hash_bucket("yuanwan_tag", 1000))
+    yuanwan_cnt = fc.indicator_column(
+        fc.numeric_column("yuanwan_cnt", 0.0))
+    follownum = fc.indicator_column(
+        fc.numeric_column("follownum", 0.0))
+    rich_tag = fc.indicator_column(
+        fc.categorical_column_with_hash_bucket("rich_tag", 1000))
+    loser_tag = fc.indicator_column(
+        fc.categorical_column_with_hash_bucket("loser_tag", 1000))
 
     # item feature
     room_id = fc.indicator_column(

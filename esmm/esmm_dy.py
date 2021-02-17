@@ -132,20 +132,20 @@ def create_feature_columns():
     province = fc.indicator_column(
         fc.categorical_column_with_hash_bucket("province", 1000))
     brand = fc.indicator_column(
-        fc.categorical_column_with_hash_bucket("brand", 1000))
+        fc.categorical_column_with_hash_bucket("brand", 100))
     model = fc.indicator_column(
         fc.categorical_column_with_hash_bucket("model", 1000))
-    active = fc.numeric_column("active", 0.0)
-    level = fc.numeric_column("level", 0.0)
-    days = fc.numeric_column("days", 0.0)
-    msg_cnt = fc.numeric_column("msg_cnt", 0.0)
-    effective_watch_days = fc.numeric_column("effective_watch_days", 0.0)
-    effective_watch_room_cnt = fc.numeric_column("effective_watch_room_cnt", 0.0)
-    watch_time = fc.numeric_column("watch_time", 0.0)
-    yuanwan_tag = fc.indicator_column(
-        fc.categorical_column_with_hash_bucket("yuanwan_tag", 1000))
-    yuanwan_cnt = fc.numeric_column("yuanwan_cnt", 0.0)
-    follownum = fc.numeric_column("follownum", 0.0)
+    active = fc.numeric_column("active", 5.0)
+    level = fc.numeric_column("level", 10)
+    days = fc.numeric_column("days", 20)
+    msg_cnt = fc.numeric_column("msg_cnt", 67)
+    effective_watch_days = fc.numeric_column("effect_watch_days", 18)
+    effective_watch_room_cnt = fc.numeric_column("effect_watch_room_cnt", 3.5)
+    watch_time = fc.numeric_column("watch_time", 130000)
+    yuwan_tag = fc.indicator_column(
+        fc.categorical_column_with_hash_bucket("yuwan_tag", 100))
+    yuwan_cnt = fc.numeric_column("yuwan_cnt", 400)
+    follownum = fc.numeric_column("follownum", 54)
     rich_tag = fc.indicator_column(
         fc.categorical_column_with_hash_bucket("rich_tag", 1000))
     loser_tag = fc.indicator_column(
@@ -153,13 +153,13 @@ def create_feature_columns():
     user_cate = fc.indicator_column(
         fc.categorical_column_with_identity("user_cate", 101, default_value=100))
     user_tag = fc.indicator_column(
-        fc.categorical_column_with_identity("user_cate", 101, default_value=100))
+        fc.categorical_column_with_identity("user_tag", 101, default_value=100))
     user_child = fc.indicator_column(
         fc.categorical_column_with_identity("user_child", 101, default_value=100))
     cate_length = fc.indicator_column(
-        fc.categorical_column_with_identity("cate_length", 101, default_value=100))
+        fc.categorical_column_with_identity("cate_length", 11, default_value=10))
     tag_length = fc.indicator_column(
-        fc.categorical_column_with_identity("tag_length", 101, default_value=100))
+        fc.categorical_column_with_identity("tag_length", 36, default_value=35))
     child_length = fc.indicator_column(
         fc.categorical_column_with_identity("child_length", 101, default_value=100))
     user_tag_favor_1_day = fc.indicator_column(
@@ -168,102 +168,138 @@ def create_feature_columns():
         fc.categorical_column_with_identity("user_tag_favor_7_day", 101, default_value=100))
     user_tag_favor_15_day = fc.indicator_column(
         fc.categorical_column_with_identity("user_tag_favor_15_day", 101, default_value=100))
-    tag_ratio_1_day_avg = fc.numeric_column("tag_ratio_1_day_avg", default_value=0.0)
-    tag_ratio_7_day_avg = fc.numeric_column("tag_ratio_7_day_avg", default_value=0.0)
-    tag_ratio_15_day_avg = fc.numeric_column("tag_ratio_15_day_avg", default_value=0.0)
+    tag_ratio_1_day_avg = fc.numeric_column(
+        "tag_ratio_1_day_avg", default_value=0.0)
+    tag_ratio_7_day_avg = fc.numeric_column(
+        "tag_ratio_7_day_avg", default_value=0.0)
+    tag_ratio_15_day_avg = fc.numeric_column(
+        "tag_ratio_15_day_avg", default_value=0.0)
     u_active_mon = fc.indicator_column(
-        fc.categorical_column_with_identity("u_active_mon", 101, default_value=100))
+        fc.categorical_column_with_identity("u_active_mon", 9, default_value=8))
     u_active_fri = fc.indicator_column(
-        fc.categorical_column_with_identity("u_active_fri", 101, default_value=100))
+        fc.categorical_column_with_identity("u_active_fri", 9, default_value=8))
     u_active_weekday = fc.indicator_column(
-        fc.categorical_column_with_identity("u_active_weekday", 101, default_value=100))
+        fc.categorical_column_with_identity("u_active_weekday", 9, default_value=8))
     u_active_weekend = fc.indicator_column(
-        fc.categorical_column_with_identity("u_active_weekend", 101, default_value=100))
+        fc.categorical_column_with_identity("u_active_weekend", 9, default_value=8))
 
     # item feature
     room_id = fc.indicator_column(
         fc.categorical_column_with_hash_bucket("room_id", 1000))
-    anchor_level = fc.numeric_column("anchor_level", default_value=0.0)
-    anchor_score = fc.numeric_column("anchor_score", default_value=0.0)
-    is_top200_anchor = fc.numeric_column("is_top200_anchor", default_value=0.0)
+    anchor_level = fc.numeric_column("anchor_level", default_value=68)
+    anchor_score = fc.numeric_column("anchor_score", default_value=187326)
+    is_top200_anchor = fc.numeric_column("is_top200_anchor", default_value=0.3)
     room_click_num_1_day = fc.numeric_column(
-        "room_click_num_1_day", default_value=0.0)
+        "room_click_num_1_day", default_value=100000)
     room_click_num_7_day = fc.numeric_column(
-        "room_click_num_7_day", default_value=0.0)
+        "room_click_num_7_day", default_value=450000)
     room_click_num_15_day = fc.numeric_column(
-        "room_click_num_15_day", default_value=0.0)
-    room_ctr_num_1_day = fc.numeric_column(
-        "room_ctr_num_1_day", default_value=0.0)
-    room_ctr_num_7_day = fc.numeric_column(
-        "room_ctr_num_7_day", default_value=0.0)
-    room_ctr_num_15_day = fc.numeric_column(
-        "room_ctr_num_15_day", default_value=0.0)
+        "room_click_num_15_day", default_value=745762)
+    room_ctr_1_day = fc.numeric_column(
+        "room_ctr_1_day", default_value=0.2)
+    room_ctr_7_day = fc.numeric_column(
+        "room_ctr_7_day", default_value=0.2)
+    room_ctr_15_day = fc.numeric_column(
+        "room_ctr_15_day", default_value=0.2)
     i_hot_mon = fc.numeric_column(
-        "i_hot_mon", default_value=0.0)
+        "i_hot_mon", default_value=850000)
     i_hot_fri = fc.numeric_column(
-        "i_hot_fri", default_value=0.0)
+        "i_hot_fri", default_value=680000)
     i_hot_weekend = fc.numeric_column(
-        "i_hot_weekend", default_value=0.0)
+        "i_hot_weekend", default_value=2100000)
     i_hot_weekday = fc.numeric_column(
-        "i_hot_weekday", default_value=0.0)
+        "i_hot_weekday", default_value=1950000)
     i_ctr_mon = fc.numeric_column(
-        "i_ctr_mon", default_value=0.0)
+        "i_ctr_mon", default_value=0.2)
     i_ctr_weekend = fc.numeric_column(
-        "i_ctr_weekend", default_value=0.0)
+        "i_ctr_weekend", default_value=0.2)
     i_ctr_weekday = fc.numeric_column(
-        "i_ctr_weekday", default_value=0.0)
-    guess_cnt_1_day = fc.numeric_column(
-        "guess_cnt_1_day", default_value=0.0)
-    guess_cnt_7_day = fc.numeric_column(
-        "guess_cnt_7_day", default_value=0.0)
-    guess_cnt_15_day = fc.numeric_column(
-        "guess_cnt_15_day", default_value=0.0)
-    raffle_cnt_1_day = fc.numeric_column(
-        "raffle_cnt_1_day", default_value=0.0)
-    raffle_cnt_7_day = fc.numeric_column(
-        "raffle_cnt_7_day", default_value=0.0)
-    raffle_cnt_15_day = fc.numeric_column(
-        "raffle_cnt_15_day", default_value=0.0)
+        "i_ctr_weekday", default_value=0.2)
+    guess_cnt_1d = fc.numeric_column(
+        "guess_cnt_1d", default_value=4.0)
+    guess_cnt_7d = fc.numeric_column(
+        "guess_cnt_7d", default_value=15)
+    guess_cnt_15d = fc.numeric_column(
+        "guess_cnt_15d", default_value=27)
+    raffle_cnt_1d = fc.numeric_column(
+        "raffle_cnt_1d", default_value=0.9)
+    raffle_cnt_7d = fc.numeric_column(
+        "raffle_cnt_7d", default_value=6.0)
+    raffle_cnt_15d = fc.numeric_column(
+        "raffle_cnt_15d", default_value=12.5)
     room_watch_newmbr_cnt_30d = fc.numeric_column(
-        "room_watch_newmbr_cnt_30d", default_value=0.0)
+        "room_watch_newmbr_cnt_30d", default_value=238000)
     room_effwatch_mbr_ratio_30d = fc.numeric_column(
-        "room_effwatch_mbr_ratio_30d", default_value=0.0)
-    room_follow_mbr_ratio_30d= fc.numeric_column(
-        "room_follow_mbr_ratio_30d", default_value=0.0)
-    room_click_repeat_uids_1_day = fc.numeric_column(
-        "room_click_repeat_uids_1_day", default_value=0.0)
-    room_click_repeat_uids_7_day = fc.numeric_column(
-        "room_click_repeat_uids_7_day", default_value=0.0)
-    room_click_repeat_uids_15_day = fc.numeric_column(
-        "room_click_repeat_uids_15_day", default_value=0.0)
+        "room_effwatch_mbr_ratio_30d", default_value=0.5)
+    room_follow_mbr_ratio_30d = fc.numeric_column(
+        "room_follow_mbr_ratio_30d", default_value=0.007)
+    room_click_repeat_uids_1d = fc.numeric_column(
+        "room_click_repeat_uids_1d", default_value=20000)
+    room_click_repeat_uids_7d = fc.numeric_column(
+        "room_click_repeat_uids_7d", default_value=75000)
+    room_click_repeat_uids_15d = fc.numeric_column(
+        "room_click_repeat_uids_15d", default_value=100000)
     click_repeat_avg_nums_15d = fc.numeric_column(
-        "click_repeat_avg_nums_15d", default_value=0.0)
+        "click_repeat_avg_nums_15d", default_value=5.0)
     item_age = fc.numeric_column(
-        "item_age", default_value=0.0)
+        "item_age", default_value=25.7)
+    owner_level = fc.numeric_column(
+        "owner_level", default_value=68)
     item_sex = fc.indicator_column(
-        fc.categorical_column_with_hash_bucket("item_sex", 1000))
+        fc.categorical_column_with_hash_bucket("item_sex", 2))
     fans = fc.numeric_column(
         "fans", default_value=0.0)
     cate_id = fc.indicator_column(
-        fc.categorical_column_with_identity("cate_id", 101, default_value=100))
+        fc.categorical_column_with_identity("cate_id", 21, default_value=20))
     child_id = fc.indicator_column(
         fc.categorical_column_with_identity("child_id", 101, default_value=100))
     tag_id = fc.indicator_column(
         fc.categorical_column_with_identity("tag_id", 101, default_value=100))
     constellation = fc.indicator_column(
-        fc.categorical_column_with_hash_bucket("constellation", 1000))
-    
+        fc.categorical_column_with_hash_bucket("constellation", 12))
+
     # share feature
+    user_tag_favor_1_day_weighted = fc.weighted_categorical_column(
+        user_tag_favor_1_day, "user_tag_favor_1_day_weighted")
+    user_tag_favor_7_day_weighted = fc.weighted_categorical_column(
+        user_tag_favor_7_day, "user_tag_favor_7_day_weighted")
+    user_tag_favor_15_day_weighted = fc.weighted_categorical_column(
+        user_tag_favor_15_day, "user_tag_favor_15_day_weighted")
+
+    tag_id_embed = fc.shared_embedding_columns([user_tag_favor_1_day_weighted, user_tag_favor_7_day_weighted,
+                                                user_tag_favor_15_day_weighted, tag_id], 100, combiner='sum', shared_embedding_collection_name='tag_id_embed')
 
     # label
     click = fc.numeric_column("ctr_label", default_value=0.0)
     pay = fc.numeric_column("cvr_label", default_value=0.0)
     global my_feature_columns
     global my_label_feature_columns
-    my_feature_columns = [uid, room_id, anchor_level, anchor_score,
-                          is_top200_anchor, room_click_num_1_day, room_click_num_7_day]
-    my_label_feature_columns = [uid, room_id, anchor_level, anchor_score,
-                                is_top200_anchor, room_click_num_1_day, room_click_num_7_day, click, pay]
+    my_feature_columns = [uid, own_room, email_status, phone_status, sex, city, province, brand, model, active,
+    level, days, msg_cnt, effective_watch_days, effective_watch_room_cnt, watch_time, yuwan_tag, yuwan_cnt, follownum,
+    rich_tag, loser_tag, user_cate, user_tag, user_child, cate_length, tag_length, child_length, tag_ratio_1_day_avg,
+    tag_ratio_7_day_avg, tag_ratio_15_day_avg, u_active_mon, u_active_fri, u_active_weekday, u_active_weekend, room_id,
+    anchor_level, anchor_score, is_top200_anchor, room_click_num_1_day, room_click_num_7_day, room_click_num_15_day, 
+    room_ctr_1_day, room_click_num_7_day, room_ctr_15_day, i_hot_mon, i_hot_fri, i_hot_weekend, i_hot_weekday, i_ctr_mon,
+    i_ctr_weekend, i_ctr_weekday, guess_cnt_1d, guess_cnt_7d, guess_cnt_15d, raffle_cnt_1d, raffle_cnt_7d, raffle_cnt_15d,
+    room_watch_newmbr_cnt_30d, room_effwatch_mbr_ratio_30d, room_follow_mbr_ratio_30d, room_click_repeat_uids_1d, room_click_repeat_uids_7d,
+    room_click_repeat_uids_15d, click_repeat_avg_nums_15d, item_age, owner_level, item_sex, fans, cate_id, child_id, constellation]
+    my_feature_columns += tag_id_embed
+    my_label_feature_columns = [uid, own_room, email_status, phone_status, sex, city, province, brand, model, active,
+    level, days, msg_cnt, effective_watch_days, effective_watch_room_cnt, watch_time, yuwan_tag, yuwan_cnt, follownum,
+    rich_tag, loser_tag, user_cate, user_tag, user_child, cate_length, tag_length, child_length, tag_ratio_1_day_avg,
+    tag_ratio_7_day_avg, tag_ratio_15_day_avg, u_active_mon, u_active_fri, u_active_weekday, u_active_weekend, room_id,
+    anchor_level, anchor_score, is_top200_anchor, room_click_num_1_day, room_click_num_7_day, room_click_num_15_day, 
+    room_ctr_1_day, room_click_num_7_day, room_ctr_15_day, i_hot_mon, i_hot_fri, i_hot_weekend, i_hot_weekday, i_ctr_mon,
+    i_ctr_weekend, i_ctr_weekday, guess_cnt_1d, guess_cnt_7d, guess_cnt_15d, raffle_cnt_1d, raffle_cnt_7d, raffle_cnt_15d,
+    room_watch_newmbr_cnt_30d, room_effwatch_mbr_ratio_30d, room_follow_mbr_ratio_30d, room_click_repeat_uids_1d, room_click_repeat_uids_7d,
+    room_click_repeat_uids_15d, click_repeat_avg_nums_15d, item_age, owner_level, item_sex, fans, cate_id, child_id, constellation]
+    my_feature_columns += tag_id_embed
+    my_feature_columns += click
+    my_feature_columns += pay
+    # my_feature_columns = [uid, room_id, anchor_level, anchor_score,
+    #                       is_top200_anchor, room_click_num_1_day, room_click_num_7_day]
+    # my_label_feature_columns = [uid, room_id, anchor_level, anchor_score,
+    #                             is_top200_anchor, room_click_num_1_day, room_click_num_7_day, click, pay]
 #   my_feature_columns += click
 #   my_feature_columns += pay
     print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
